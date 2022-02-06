@@ -1,33 +1,30 @@
-package com.example.salesdashboard.entities;
+package com.example.salesdashboard.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.salesdashboard.entities.Sale;
+import com.example.salesdashboard.entities.Seller;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "tb_sellers")
-public class Seller implements Serializable {
+public class SellerDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    @JsonIgnore
-    @OneToMany
-    private List<Sale> sales = new ArrayList<>();
-
-    public Seller() {
+    public SellerDTO() {
     }
 
-    public Seller(Long id, String name) {
+    public SellerDTO(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public SellerDTO(Seller seller) {
+        id = seller.getId();
+        name = seller.getName();
     }
 
     public Long getId() {
@@ -46,16 +43,12 @@ public class Seller implements Serializable {
         this.name = name;
     }
 
-    public List<Sale> getSales() {
-        return sales;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Seller seller = (Seller) o;
-        return Objects.equals(id, seller.id);
+        SellerDTO sellerDTO = (SellerDTO) o;
+        return Objects.equals(id, sellerDTO.id);
     }
 
     @Override
