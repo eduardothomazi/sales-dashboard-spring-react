@@ -1,7 +1,5 @@
 package com.example.salesdashboard.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,7 +16,6 @@ public class Seller implements Serializable {
     private Long id;
     private String name;
 
-    @JsonIgnore
     @OneToMany
     private List<Sale> sales = new ArrayList<>();
 

@@ -1,11 +1,8 @@
 package com.example.salesdashboard.dto;
 
-import com.example.salesdashboard.entities.Sale;
 import com.example.salesdashboard.entities.Seller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class SellerDTO implements Serializable {

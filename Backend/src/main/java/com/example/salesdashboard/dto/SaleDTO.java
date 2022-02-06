@@ -1,7 +1,6 @@
 package com.example.salesdashboard.dto;
 
 import com.example.salesdashboard.entities.Sale;
-import com.example.salesdashboard.entities.Seller;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,12 +14,12 @@ public class SaleDTO implements Serializable {
     private Integer deals;
     private Double amount;
     private LocalDate date;
-    private Seller seller;
+    private SellerDTO seller;
 
     public SaleDTO() {
     }
-
-    public SaleDTO(Integer visited, Integer deals, Double amount, LocalDate date, Seller seller) {
+    public SaleDTO(Long id, Integer visited, Integer deals, Double amount, LocalDate date, SellerDTO seller) {
+        this.id = id;
         this.visited = visited;
         this.deals = deals;
         this.amount = amount;
@@ -33,7 +32,7 @@ public class SaleDTO implements Serializable {
         deals = sale.getDeals();
         amount = sale.getAmount();
         date = sale.getDate();
-        seller = sale.getSeller();
+        seller = new SellerDTO(sale.getSeller());
     }
 
     public Long getId() {
@@ -76,11 +75,11 @@ public class SaleDTO implements Serializable {
         this.date = date;
     }
 
-    public Seller getSeller() {
+    public SellerDTO getSeller() {
         return seller;
     }
 
-    public void setSeller(Seller seller) {
+    public void setSeller(SellerDTO seller) {
         this.seller = seller;
     }
 
@@ -89,7 +88,7 @@ public class SaleDTO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SaleDTO saleDTO = (SaleDTO) o;
-        return Objects.equals(id, saleDTO.id);
+        return id.equals(saleDTO.id);
     }
 
     @Override
