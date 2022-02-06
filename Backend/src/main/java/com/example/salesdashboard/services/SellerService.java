@@ -27,6 +27,5 @@ public class SellerService {
         Seller seller = repository.findById(id).get();
         SellerDTO sellerDTO = new SellerDTO(seller);
         return sellerDTO;
-
     }
 }

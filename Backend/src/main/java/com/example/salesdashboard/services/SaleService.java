@@ -1,6 +1,8 @@
 package com.example.salesdashboard.services;
 
 import com.example.salesdashboard.dto.SaleDTO;
+import com.example.salesdashboard.dto.SaleSuccessDTO;
+import com.example.salesdashboard.dto.SaleSumDTO;
 import com.example.salesdashboard.entities.Sale;
 import com.example.salesdashboard.repositories.SaleRepository;
 import com.example.salesdashboard.repositories.SellerRepository;
@@ -9,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class SaleService {
@@ -30,6 +34,16 @@ public class SaleService {
         Sale sale = repository.findById(id).get();
         SaleDTO saleDTO = new SaleDTO(sale);
         return saleDTO;
+    }
+
+    @Transactional(readOnly = true)
+    public List<SaleSumDTO> amountGroupedBySeller(){
+        return repository.amountGroupedBySeller();
+    }
+
+    @Transactional(readOnly = true)
+    public List<SaleSuccessDTO> successGroupedBySeller(){
+        return repository.successGroupedBySeller();
     }
 
 
