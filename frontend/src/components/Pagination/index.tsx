@@ -1,10 +1,5 @@
 import { Props } from "react-apexcharts";
-import { SalePage } from "types/sale";
 
-type props = {
-    page: SalePage;
-    onPageChange: Function
-}
 
 
 const Pagination = ({ page, onPageChange }: Props) => {
